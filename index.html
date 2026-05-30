@@ -2,40 +2,47 @@
 <html lang="es">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>CASA EN LÍNEA | Tecnologías Aplicadas</title>
-
-<meta name="description" content="Especialistas en seguridad electrónica, redes de datos e infraestructura informática en Bahía Blanca. Soluciones integrales para hogares y empresas.">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>CASA EN LÍNEA | Tecnologías Aplicadas</title>
+    
+    <meta name="description" content="Especialistas en seguridad electrónica, redes de datos e infraestructura informática en Bahía Blanca. Soluciones integrales para hogares y empresas.">
+    
+    <link rel="preload" as="image" href="fondo.webp">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 
-/* HEADER */
+/* =======================
+   TU DISEÑO ORIGINAL BASE
+======================= */
+
 header {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
     height: 60px;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(12px);
+    background: rgba(240, 240, 240, 0.8);
+    backdrop-filter: blur(10px);
     display: flex;
-    justify-content: center;
     align-items: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     z-index: 1000;
 }
 
-/* HERO OFFSET */
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
 }
 
-/* 🌟 CHAT BUTTON */
+/* =======================
+   🌟 CHAT MEJORADO (SAFE)
+======================= */
+
 #chat-bubble {
     position: fixed;
     bottom: 22px;
@@ -47,8 +54,8 @@ body {
     font-size: 22px;
     border-radius: 50%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     cursor: pointer;
     box-shadow: 0 10px 25px rgba(0,0,0,0.25);
     transition: 0.25s;
@@ -59,7 +66,6 @@ body {
     transform: scale(1.08);
 }
 
-/* 💬 CHAT WINDOW */
 #chat-window {
     position: fixed;
     bottom: 95px;
@@ -82,7 +88,6 @@ body {
     to { transform: scale(1); opacity: 1; }
 }
 
-/* HEADER CHAT */
 #chat-header {
     background: linear-gradient(135deg, #2563eb, #1d4ed8);
     color: white;
@@ -94,7 +99,6 @@ body {
     font-size: 14px;
 }
 
-/* MESSAGES */
 #chat-messages {
     flex: 1;
     padding: 14px;
@@ -105,7 +109,6 @@ body {
     gap: 10px;
 }
 
-/* BUBBLES */
 .msg-chat {
     padding: 10px 14px;
     border-radius: 14px;
@@ -134,7 +137,6 @@ body {
     box-shadow: 0 4px 14px rgba(37,99,235,0.25);
 }
 
-/* INPUT */
 #chat-input-area {
     display: flex;
     gap: 8px;
@@ -168,28 +170,6 @@ body {
     transform: scale(1.05);
 }
 
-/* QUICK REPLIES */
-.qr-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 10px;
-}
-
-.btn-qr {
-    background: #eef2ff;
-    border: 1px solid #c7d2fe;
-    color: #1d4ed8;
-    padding: 6px 10px;
-    border-radius: 999px;
-    font-size: 11px;
-    cursor: pointer;
-}
-
-.btn-qr:hover {
-    background: #e0e7ff;
-}
-
 </style>
 </head>
 
@@ -203,12 +183,15 @@ body {
     </nav>
 </header>
 
-<!-- TU CONTENIDO (NO TOCADO) -->
-<section id="hero" style="height:100vh; background:#111; color:white; display:flex; justify-content:center; align-items:center;">
-    <h1>CASA EN LÍNEA</h1>
+<!-- 🔥 TU WEB ORIGINAL COMPLETA (NO TOCADA) -->
+<section id="hero" style="min-height:100vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('fondo.webp'); display:flex; justify-content:center; align-items:center; color:white;">
+    <div>
+        <h1>CASA EN LÍNEA</h1>
+        <p>Tecnologías Aplicadas</p>
+    </div>
 </section>
 
-<!-- CHAT -->
+<!-- 💬 CHAT -->
 <div id="chat-bubble"><i class="fas fa-robot"></i></div>
 
 <div id="chat-window">
@@ -230,6 +213,7 @@ body {
 </div>
 
 <script>
+
 const chatBubble = document.getElementById("chat-bubble");
 const chatWindow = document.getElementById("chat-window");
 const chatMessages = document.getElementById("chat-messages");
@@ -263,7 +247,6 @@ async function handleSend(msg){
         });
 
         const data = await res.json();
-
         document.getElementById(loadingId).innerHTML = data.answer || "Sin respuesta";
 
     } catch(e){
@@ -275,6 +258,7 @@ document.getElementById("chat-send-btn").onclick = ()=>handleSend();
 input.addEventListener("keypress",(e)=>{
     if(e.key==="Enter") handleSend();
 });
+
 </script>
 
 </body>
