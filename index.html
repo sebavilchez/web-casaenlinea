@@ -300,9 +300,8 @@
             }
 
             function refreshCamera() {
-
-                document.getElementById("liveCam").src = "fondo.webp";
-
+                document.getElementById("liveCam").src =
+                    "http://186.56.31.72:83/ISAPI/Streaming/channels/101/picture?t=" + Date.now();
             }
 
         chatBubble.onclick = toggleChat;
