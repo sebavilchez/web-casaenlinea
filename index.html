@@ -146,10 +146,6 @@
             <a href="#hero" style="margin:0 15px; text-decoration:none; color:#1e293b; font-weight:600;">Inicio</a>
             <a href="#services" style="margin:0 15px; text-decoration:none; color:#1e293b; font-weight:600;">Soluciones</a>
             <a href="#contact" style="margin:0 15px; text-decoration:none; color:#1e293b; font-weight:600;">Contacto</a>
-            <a href="#" onclick="openLiveView(); return false;"
-                style="margin:0 15px; text-decoration:none; color:#1e293b; font-weight:600;">
-                En Vivo
-            </a>
         </nav>
     </header>
 
@@ -273,36 +269,13 @@
         const workerUrl = "https://orange-wave-d08b.scvilchez.workers.dev/";
 
         function toggleChat() {
-                if (chatWindow.style.display === "flex") {
-                    chatWindow.style.display = "none";
-                } else {
-                    chatWindow.style.display = "flex";
-                    chatNotification.style.display = "none";
-                }
+            if (chatWindow.style.display === "flex") {
+                chatWindow.style.display = "none";
+            } else {
+                chatWindow.style.display = "flex";
+                chatNotification.style.display = "none";
             }
-
-            function openLiveView() {
-
-                document.getElementById("liveModal").style.display = "block";
-
-                refreshCamera();
-
-                window.liveTimer = setInterval(refreshCamera, 1000);
-
-            }
-
-            function closeLiveView() {
-
-                document.getElementById("liveModal").style.display = "none";
-
-                clearInterval(window.liveTimer);
-
-            }
-
-            function refreshCamera() {
-                document.getElementById("liveCam").src =
-                    "http://186.56.31.72:83/ISAPI/Streaming/channels/101/picture?t=" + Date.now();
-            }
+        }
 
         chatBubble.onclick = toggleChat;
 
@@ -351,51 +324,6 @@
                 }
             }, 3000);
         };
-        
     </script>
-    <div id="liveModal" style="
-        display:none;
-        position:fixed;
-        z-index:10001;
-        left:0;
-        top:0;
-        width:100%;
-        height:100%;
-        background:rgba(0,0,0,.8);
-    ">
-    
-        <div style="
-            width:90%;
-            max-width:900px;
-            margin:50px auto;
-            background:white;
-            border-radius:12px;
-            overflow:hidden;
-            position:relative;
-        ">
-    
-            <button onclick="closeLiveView()" style="
-                position:absolute;
-                right:10px;
-                top:10px;
-                border:none;
-                background:#ef4444;
-                color:white;
-                padding:8px 12px;
-                border-radius:6px;
-                cursor:pointer;
-                z-index:10;
-            ">
-                ✕
-            </button>
-    
-            <img id="liveCam" src="" style="
-                    width:100%;
-                    display:block;
-                ">
-    
-        </div>
-    
-    </div>
 </body>
 </html>
