@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.casaenlinea.com.ar/sitemap.xml
+
+Host: https://www.casaenlinea.com.ar
