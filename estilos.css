@@ -4,14 +4,16 @@
     padding: 0;
 }
 
-body, html {
-    height: 100%;
+html {
+    scroll-behavior: smooth;
+}
+
+body {
     font-family: 'Poppins', sans-serif;
     background-color: #0f172a;
     color: #f8fafc;
     overflow-x: hidden;
-    overflow-y: auto; /* Habilitado para permitir el scroll hacia el Below the Fold */
-    scroll-behavior: smooth;
+    overflow-y: auto; /* El scroll vertical ahora responde al contenido real de la página */
 }
 
 /* HEADER CON GLASSMORPHISM OPTIMIZADO */
@@ -108,7 +110,7 @@ header {
 
 /* SECCIÓN HERO (ABOVE THE FOLD) */
 #hero {
-    height: 100vh;
+    min-height: 100vh; /* Cambiado a min-height para permitir que el flujo vertical continúe */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,7 +119,7 @@ header {
     background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.85)), url('fondo.webp');
     background-size: cover;
     background-position: center center;
-    padding: 0 20px;
+    padding: 90px 20px 40px 20px; /* Padding superior para evitar superposición con el header fijo */
 }
 
 .hero-container {
@@ -307,7 +309,7 @@ header {
     font-size: 0.88rem;
     line-height: 1.6;
     margin-bottom: 25px;
-    flex-grow: 1; /* Permite una alineación simétrica de las etiquetas al pie de la card */
+    flex-grow: 1;
 }
 
 /* ETIQUETAS TÉCNICAS (TAGS INDEPENDIENTES) */
@@ -315,7 +317,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin-top: auto; /* Ancla el bloque de tags al fondo de la tarjeta */
+    margin-top: auto;
 }
 
 .servicio-tags span {
