@@ -88,6 +88,36 @@
             color: #3b82f6;
         }
 
+        /* ESTILOS DEL CLIMA (ALINEADO A LA DERECHA POR EL FLEX DEL HEADER) */
+        .clima-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            transition: opacity 0.3s ease;
+        }
+
+        .clima-ciudad {
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .clima-temp {
+            font-weight: 600;
+            color: #60a5fa;
+        }
+
+        .clima-icono img {
+            width: 28px;
+            height: 28px;
+            display: block;
+        }
+
         /* SECCIÓN HERO (ABOVE THE FOLD) OPTIMIZADA PARA SEO Y DISPOSITIVOS MÓVILES */
         #hero {
             height: 100vh;
@@ -209,6 +239,9 @@
             .cta-primary, .cta-secondary {
                 justify-content: center;
             }
+            .clima-ciudad {
+                display: none; /* Oculta "Bahía Blanca:" en celulares para evitar desbordes */
+            }
         }
     </style>
 </head>
@@ -217,6 +250,12 @@
 
     <header>
         <div class="logo">CASA EN <span>LÍNEA</span></div>
+        <!-- Widget del Clima (Se posiciona a la derecha automáticamente) -->
+        <div id="widget-clima" class="clima-container">
+            <span class="clima-ciudad">Bahía Blanca: </span>
+            <span id="clima-temp" class="clima-temp">--°C</span>
+            <div id="clima-icono" class="clima-icono"></div>
+        </div>
     </header>
 
     <section id="hero">
@@ -238,6 +277,35 @@
             </div>
         </div>
     </section>
+
+    <!-- Script JavaScript: Consulta la API una única vez al ingresar o refrescar -->
+    <script>
+        async function obtenerClima() {
+            const ciudad = "Bahia Blanca"; 
+            const apiKey = "61908b8b0e8b4e7492f155351231603"; 
+            const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${ciudad}&lang=es`;
+
+            try {
+                const respuesta = await fetch(url);
+                if (!respuesta.ok) throw new Error("Error en la petición de clima");
+                
+                const datos = await respuesta.json();
+                
+                const temperatura = Math.round(datos.current.temp_c);
+                const iconoUrl = datos.current.condition.icon;
+                const descripcionAlt = datos.current.condition.text;
+
+                document.getElementById("clima-temp").textContent = `${temperatura}°C`;
+                document.getElementById("clima-icono").innerHTML = `<img src="https:${iconoUrl}" alt="${descripcionAlt}" title="${descripcionAlt}">`;
+                
+            } catch (error) {
+                console.error("No se pudieron cargar los datos del clima:", error);
+                document.getElementById("widget-clima").style.opacity = "0"; // Esconde el recuadro si falla la API
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", obtenerClima);
+    </script>
 
 </body>
 </html>
