@@ -88,35 +88,28 @@
             color: #3b82f6;
         }
 
-        /* ESTILOS DEL CLIMA COMPLETO */
+        /* ESTILOS DEL CLIMA (ALINEADO A LA DERECHA POR EL FLEX DEL HEADER) */
         .clima-container {
             display: flex;
             align-items: center;
-            gap: 14px;
-            background: rgba(255, 255, 255, 0.04);
-            padding: 6px 16px;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            font-size: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
             color: #cbd5e1;
             transition: opacity 0.3s ease;
         }
 
-        .clima-principal {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
         .clima-ciudad {
             font-weight: 400;
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
         .clima-temp {
             font-weight: 600;
             color: #60a5fa;
-            font-size: 0.85rem;
         }
 
         .clima-icono img {
@@ -125,39 +118,118 @@
             display: block;
         }
 
-        /* Divisores sutiles entre métricas */
-        .clima-separador {
-            width: 1px;
-            height: 14px;
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        /* Detalles técnicos de viento, presión y humedad */
-        .clima-detalles {
+        /* SECCIÓN HERO (ABOVE THE FOLD) OPTIMIZADA PARA SEO Y DISPOSITIVOS MÓVILES */
+        #hero {
+            height: 100vh;
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 12px;
-            opacity: 0.85;
+            text-align: center;
+            position: relative;
+            /* Recordá renombrar tu nueva imagen recortada como 'fondo.webp' */
+            background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.85)), url('fondo.webp');
+            background-size: cover;
+            background-position: center center;
+            padding: 0 20px;
         }
 
-        .clima-item {
+        .hero-container {
+            max-width: 950px;
+            width: 100%;
+            margin-top: 60px; /* Compensa la altura del header fijo */
+        }
+
+        /* H1 Estratégico para indexación local de Google */
+        #hero h1 {
+            color: #ffffff;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-size: clamp(1.8rem, 5vw, 3.2rem);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        #hero h1 .brand {
+            display: block;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 500;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        #hero h1 .highlight {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Párrafo enriquecido semánticamente con keywords secundarias */
+        #hero p {
+            color: #cbd5e1;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            max-width: 780px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Botones de Conversión (Llamados a la Acción con enlaces descriptivos) */
+        .hero-cta-group {
             display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 10px;
+            background-color: #22c55e;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4);
+            transition: all 0.3s ease;
         }
 
-        .clima-item i {
-            color: #94a3b8; /* Color grisáceo tecnológico para los iconos */
-            font-size: 0.75rem;
+        .cta-primary:hover {
+            background-color: #16a34a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6);
         }
 
-        /* Responsive: ocultar datos secundarios en móviles para que no se encime el diseño */
-        @media (max-width: 768px) {
-            .clima-detalles, .clima-separador {
-                display: none; /* En tablets y celulares medianos solo deja Ciudad, Temp e Icono */
-            }
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
         }
 
+        .cta-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Responsive ajuste fino para pantallas muy pequeñas */
         @media (max-width: 480px) {
             .hero-cta-group {
                 flex-direction: column;
@@ -168,7 +240,7 @@
                 justify-content: center;
             }
             .clima-ciudad {
-                display: none; /* En celulares chicos oculta el texto "Bahía Blanca:" */
+                display: none; /* Oculta "Bahía Blanca:" en celulares para evitar desbordes */
             }
         }
     </style>
@@ -178,31 +250,11 @@
 
     <header>
         <div class="logo">CASA EN <span>LÍNEA</span></div>
-        
-        <!-- Widget del Clima Detallado -->
+        <!-- Widget del Clima (Se posiciona a la derecha automáticamente) -->
         <div id="widget-clima" class="clima-container">
-            <div class="clima-principal">
-                <span class="clima-ciudad">Bahía Blanca: </span>
-                <span id="clima-temp" class="clima-temp">--°C</span>
-                <div id="clima-icono" class="clima-icono"></div>
-            </div>
-            
-            <div class="clima-separador"></div>
-            
-            <div class="clima-detalles">
-                <div class="clima-item" title="Viento">
-                    <i class="fas fa-wind" aria-hidden="true"></i>
-                    <span id="clima-viento">-- km/h</span>
-                </div>
-                <div class="clima-item" title="Humedad">
-                    <i class="fas fa-droplet" aria-hidden="true"></i>
-                    <span id="clima-humedad">--%</span>
-                </div>
-                <div class="clima-item" title="Presión atmosférica">
-                    <i class="fas fa-gauge-high" aria-hidden="true"></i>
-                    <span id="clima-presion">-- hPa</span>
-                </div>
-            </div>
+            <span class="clima-ciudad">Bahía Blanca: </span>
+            <span id="clima-temp" class="clima-temp">--°C</span>
+            <div id="clima-icono" class="clima-icono"></div>
         </div>
     </header>
 
@@ -226,7 +278,7 @@
         </div>
     </section>
 
-    <!-- Script JavaScript: Consulta la API e inserta todas las variables meteorológicas -->
+    <!-- Script JavaScript: Consulta la API una única vez al ingresar o refrescar -->
     <script>
         async function obtenerClima() {
             const ciudad = "Bahia Blanca"; 
@@ -239,24 +291,16 @@
                 
                 const datos = await respuesta.json();
                 
-                // Mapeo de datos desde el JSON de la API
                 const temperatura = Math.round(datos.current.temp_c);
                 const iconoUrl = datos.current.condition.icon;
                 const descripcionAlt = datos.current.condition.text;
-                const viento = Math.round(datos.current.wind_kph);
-                const humedad = datos.current.humidity;
-                const presion = Math.round(datos.current.pressure_mb);
 
-                // Inyección dinámica de datos en el HTML
                 document.getElementById("clima-temp").textContent = `${temperatura}°C`;
-                document.getElementById("clima-viento").textContent = `${viento} km/h`;
-                document.getElementById("clima-humedad").textContent = `${humedad}%`;
-                document.getElementById("clima-presion").textContent = `${presion} hPa`;
                 document.getElementById("clima-icono").innerHTML = `<img src="https:${iconoUrl}" alt="${descripcionAlt}" title="${descripcionAlt}">`;
                 
             } catch (error) {
                 console.error("No se pudieron cargar los datos del clima:", error);
-                document.getElementById("widget-clima").style.opacity = "0"; // Oculta todo el bloque si hay falla
+                document.getElementById("widget-clima").style.opacity = "0"; // Esconde el recuadro si falla la API
             }
         }
 
