@@ -331,16 +331,17 @@ header {
     letter-spacing: 0.3px;
 }
 
-/* COMUNIDAD Y REDES */
+/* ==========================
+   COMUNIDAD Y REDES SOCIALES
+   ========================== */
 
 #comunidad-redes{
     padding:100px 5%;
-    background:
-        linear-gradient(
-            180deg,
-            #0f172a 0%,
-            #111827 100%
-        );
+    background:linear-gradient(
+        180deg,
+        #0f172a 0%,
+        #111827 100%
+    );
 }
 
 .comunidad-container{
@@ -355,6 +356,9 @@ header {
 }
 
 .red-social{
+    position:relative;
+    overflow:hidden;
+
     text-decoration:none;
     color:inherit;
 
@@ -362,14 +366,36 @@ header {
     border:1px solid rgba(255,255,255,0.05);
 
     border-radius:12px;
-
     padding:35px 30px;
 
-    transition:all .3s ease;
+    text-align:center;
 
     backdrop-filter:blur(4px);
 
-    text-align:center;
+    transition:all .3s ease;
+}
+
+.red-social::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:3px;
+
+    background:linear-gradient(
+        90deg,
+        #3b82f6,
+        #60a5fa
+    );
+
+    transform:scaleX(0);
+    transition:.3s ease;
+}
+
+.red-social:hover::before{
+    transform:scaleX(1);
 }
 
 .red-social:hover{
@@ -377,7 +403,7 @@ header {
 
     background:rgba(255,255,255,0.04);
 
-    border-color:rgba(59,130,246,.3);
+    border-color:rgba(59,130,246,.30);
 
     box-shadow:0 12px 35px rgba(0,0,0,.4);
 }
@@ -394,12 +420,45 @@ header {
     align-items:center;
     justify-content:center;
 
-    background:rgba(59,130,246,.10);
+    font-size:1.8rem;
+
+    transition:all .3s ease;
 }
 
-.red-icon i{
-    font-size:1.6rem;
-    color:#60a5fa;
+.red-social:hover .red-icon{
+    transform:scale(1.08);
+}
+
+/* LinkedIn */
+
+.red-social:nth-child(1) .red-icon{
+    background:rgba(0,119,181,.15);
+    border:1px solid rgba(0,119,181,.25);
+    color:#0077b5;
+}
+
+/* Instagram */
+
+.red-social:nth-child(2) .red-icon{
+    background:rgba(221,42,123,.15);
+    border:1px solid rgba(221,42,123,.25);
+    color:#dd2a7b;
+}
+
+/* YouTube */
+
+.red-social:nth-child(3) .red-icon{
+    background:rgba(255,0,0,.15);
+    border:1px solid rgba(255,0,0,.25);
+    color:#ff0000;
+}
+
+/* GitHub */
+
+.red-social:nth-child(4) .red-icon{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    color:#ffffff;
 }
 
 .red-social h3{
