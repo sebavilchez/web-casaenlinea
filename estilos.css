@@ -331,6 +331,95 @@ header {
     letter-spacing: 0.3px;
 }
 
+/* COMUNIDAD Y REDES */
+
+#comunidad-redes{
+    padding:100px 5%;
+    background:
+        linear-gradient(
+            180deg,
+            #0f172a 0%,
+            #111827 100%
+        );
+}
+
+.comunidad-container{
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.redes-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.red-social{
+    text-decoration:none;
+    color:inherit;
+
+    background:rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.05);
+
+    border-radius:12px;
+
+    padding:35px 30px;
+
+    transition:all .3s ease;
+
+    backdrop-filter:blur(4px);
+
+    text-align:center;
+}
+
+.red-social:hover{
+    transform:translateY(-5px);
+
+    background:rgba(255,255,255,0.04);
+
+    border-color:rgba(59,130,246,.3);
+
+    box-shadow:0 12px 35px rgba(0,0,0,.4);
+}
+
+.red-icon{
+    width:64px;
+    height:64px;
+
+    margin:0 auto 20px;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(59,130,246,.10);
+}
+
+.red-icon i{
+    font-size:1.6rem;
+    color:#60a5fa;
+}
+
+.red-social h3{
+    color:#ffffff;
+    font-size:1.15rem;
+    font-weight:600;
+    margin-bottom:12px;
+}
+
+.red-social p{
+    color:#94a3b8;
+    font-size:.9rem;
+    line-height:1.6;
+}
+
+.redes-cta{
+    text-align:center;
+    margin-top:50px;
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .clima-detalles, .clima-separador {
