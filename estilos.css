@@ -522,7 +522,8 @@ header {
 }
 
 .footer-container p{
+    margin:0;
+    text-align:center;
     color:#64748b;
     font-size:.9rem;
-    margin:0;
 }
