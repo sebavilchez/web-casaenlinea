@@ -299,9 +299,22 @@
 
     </div>
 </section>
-    </main>
 
-    <script src="clima.js" defer></script>
+<footer id="footer">
+    <div class="footer-container">
+        <p>
+            © <span id="anio-actual"></span> CASA EN LÍNEA · Tecnologías Aplicadas · Bahía Blanca (8000)
+        </p>
+    </div>
+</footer>
+
+</main>
+
+<script src="clima.js" defer></script>
+
+<script>
+document.getElementById("anio-actual").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
