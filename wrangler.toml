@@ -1,6 +1,2 @@
-name = "mi-validador-login"
-main = "workers/index.js"
+name = 'web-casaenlinea'
 compatibility_date = "2026-06-17"
-
-[site]
-bucket = "./"
