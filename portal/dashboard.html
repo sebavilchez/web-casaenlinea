@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Portal de Cliente</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+    }
+    .dashboard {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .cuit-info {
+      background: #e7f3ff;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 30px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <h1>📊 Tu Dashboard</h1>
+    <div class="cuit-info">
+      <strong>CUIT/DNI:</strong> <span id="cuitDisplay"></span>
+    </div>
+
+    <!-- Tu contenido de dashboard aquí -->
+    <p>Bienvenido a tu portal de cliente.</p>
+    <p> Aquí mostrarás la información específica de cada cliente según su CUIT.</p>
+
+    <button onclick="logout()">Cerrar Sesión</button>
+  </div>
+
+  <script>
+    // Verificar si hay token válido
+    const token = localStorage.getItem('token');
+    const cuit = localStorage.getItem('cuit');
+
+    if (!token || !cuit) {
+      window.location.href = '/login.html';
+    }
+
+    document.getElementById('cuitDisplay').textContent = cuit;
+
+    function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('cuit');
+      window.location.href = '/login.html';
+    }
+  </script>
+</body>
+</html>
