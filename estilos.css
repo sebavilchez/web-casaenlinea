@@ -46,6 +46,28 @@ header {
     color: #3b82f6;
 }
 
+/* TÍTULO CENTRAL DEL PORTAL (NARANJA CORPO) */
+.portal-title {
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-weight: 600;
+    color: #f97316; /* Naranja corporativo basado en la paleta Tailwind (Orange 500) */
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+/* RESPONSIVE PARA EL TÍTULO (Ajuste en pantallas chicas) */
+@media (max-width: 600px) {
+    .portal-title {
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+}
+
 /* ESTILOS DEL CLIMA COMPLETO */
 .clima-container {
     display: flex;
