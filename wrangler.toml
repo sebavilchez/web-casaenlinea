@@ -1,2 +1,6 @@
-name = 'web-casaenlinea'
+name = "web-casaenlinea"
+main = "workers/index.js"
 compatibility_date = "2026-06-17"
+
+[assets]
+directory = "./"
