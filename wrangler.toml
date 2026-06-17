@@ -1,4 +1,4 @@
-name = "mi-validador-login"
+name = "web-casaenlinea"
 main = "workers/index.js"
 compatibility_date = "2026-06-17"
 
