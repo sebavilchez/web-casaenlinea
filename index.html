@@ -68,35 +68,39 @@
 <body>
 
 <header>
-        <a href="/" class="logo">
-    CASA EN <span>LÍNEA</span>
-</a>
+    <a href="/" class="logo">
+        CASA EN <span>LÍNEA</span>
+    </a>
+    
+    <div class="portal-title">
+        PORTAL DE CLIENTES
+    </div>
         
-        <div id="widget-clima" class="clima-container">
-            <div class="clima-principal">
-                <span class="clima-ciudad">Bahía Blanca: </span>
-                <span id="clima-temp" class="clima-temp">--°C</span>
-                <div id="clima-icono" class="clima-icono"></div>
+    <div id="widget-clima" class="clima-container">
+        <div class="clima-principal">
+            <span class="clima-ciudad">Bahía Blanca: </span>
+            <span id="clima-temp" class="clima-temp">--°C</span>
+            <div id="clima-icono" class="clima-icono"></div>
+        </div>
+        
+        <div class="clima-separador"></div>
+        
+        <div class="clima-detalles">
+            <div class="clima-item" title="Viento">
+                <i class="fas fa-wind" aria-hidden="true"></i>
+                <span id="clima-viento">-- km/h</span>
             </div>
-            
-            <div class="clima-separador"></div>
-            
-            <div class="clima-detalles">
-                <div class="clima-item" title="Viento">
-                    <i class="fas fa-wind" aria-hidden="true"></i>
-                    <span id="clima-viento">-- km/h</span>
-                </div>
-                <div class="clima-item" title="Humedad">
-                    <i class="fas fa-droplet" aria-hidden="true"></i>
-                    <span id="clima-humedad">--%</span>
-                </div>
-                <div class="clima-item" title="Presión atmosférica">
-                    <i class="fas fa-gauge-high" aria-hidden="true"></i>
-                    <span id="clima-presion">-- hPa</span>
-                </div>
+            <div class="clima-item" title="Humedad">
+                <i class="fas fa-droplet" aria-hidden="true"></i>
+                <span id="clima-humedad">--%</span>
+            </div>
+            <div class="clima-item" title="Presión atmosférica">
+                <i class="fas fa-gauge-high" aria-hidden="true"></i>
+                <span id="clima-presion">-- hPa</span>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
     <main>
         <section id="hero">
