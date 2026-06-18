@@ -1,10 +1,19 @@
 from fastapi import FastAPI
-import os
+from fastapi.middleware.cors import CORSMiddleware
 from supabase import create_client
+import os
 
 app = FastAPI()
 
-@app.post("/api/validar")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.post("/validar")
 def validar(data: dict):
 
     cuit = data.get("cuit")
@@ -21,12 +30,6 @@ def validar(data: dict):
         .execute()
 
     if response.data:
-        return {
-            "status": "success",
-            "cliente": response.data[0]
-        }
+        return {"status": "success", "cliente": response.data[0]}
 
-    return {
-        "status": "error",
-        "message": "Credenciales inválidas"
-    }
+    return {"status": "error", "message": "Credenciales inválidas"}
