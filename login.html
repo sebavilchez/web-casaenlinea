@@ -32,22 +32,24 @@
             salida.innerText = "Conectando...";
 
             try {
+                // Aquí pusimos tu nueva dirección de Vercel para que conecte bien
                 const response = await fetch('https://vercel.app', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ 
-    cuit: user.replaceAll("-", ""), 
-    clave: password 
-})
+                        cuit: user.replaceAll("-", ""), 
+                        clave: password 
+                    })
                 });
 
                 const data = await response.json();
 
-                if (response.ok) {
+                // Validamos si Supabase encontró al usuario
+                if (response.ok && data.status === "success") {
                     localStorage.setItem('datosCliente', JSON.stringify(data.cliente));
                     window.location.href = 'dashboard.html';
                 } else {
-                    salida.innerText = data.message || "Error al autenticar";
+                    salida.innerText = data.message || "Credenciales inválidas";
                 }
             } catch (error) {
                 salida.innerText = "Error de red: No se pudo conectar con el servidor.";
