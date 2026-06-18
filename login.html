@@ -16,12 +16,33 @@
 
     <script>
         async function enviar() {
-            const user = document.getElementById('userInput').value;
-            const password = document.getElementById('passInput').value;
-            const salida = document.getElementById('salida');
+    const user = document.getElementById('userInput').value;
+    const password = document.getElementById('passInput').value;
+    const salida = document.getElementById('salida');
 
-            // Código de petición vacío para armar...
+    salida.innerText = "Conectando...";
+
+    try {
+        const response = await fetch('https://web-casaenlinea-iy721acr2-casa-en-linea.vercel.app/api/validar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ cuit: user, clave: password })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            salida.innerText = "¡Login exitoso! Redirigiendo...";
+            // Aquí guardamos los datos para el dashboard
+            localStorage.setItem('datosCliente', JSON.stringify(data.cliente));
+            window.location.href = 'dashboard.html';
+        } else {
+            salida.innerText = "Error: " + data.message;
         }
+    } catch (error) {
+        salida.innerText = "Error de conexión: " + error.message;
+    }
+}
     </script>
 
 </body>
