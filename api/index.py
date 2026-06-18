@@ -4,7 +4,8 @@ from supabase import create_client
 
 def handler(request):
     try:
-        body = request.get_json()
+        body = request.json
+
         cuit = body.get("cuit")
         clave = body.get("clave")
 
@@ -21,23 +22,32 @@ def handler(request):
         if response.data:
             return {
                 "statusCode": 200,
+                "headers": {
+                    "Access-Control-Allow-Origin": "*"
+                },
                 "body": json.dumps({
                     "status": "success",
                     "cliente": response.data[0]
                 })
             }
-        else:
-            return {
-                "statusCode": 401,
-                "body": json.dumps({
-                    "status": "error",
-                    "message": "Credenciales inválidas"
-                })
-            }
+
+        return {
+            "statusCode": 401,
+            "headers": {
+                "Access-Control-Allow-Origin": "*"
+            },
+            "body": json.dumps({
+                "status": "error",
+                "message": "Credenciales inválidas"
+            })
+        }
 
     except Exception as e:
         return {
             "statusCode": 500,
+            "headers": {
+                "Access-Control-Allow-Origin": "*"
+            },
             "body": json.dumps({
                 "status": "error",
                 "message": str(e)
