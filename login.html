@@ -32,11 +32,12 @@
             salida.innerText = "Conectando...";
 
             try {
-                const response = await fetch('/api/validar', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ cuit: user, clave: password })
-                });
+                // Cambia esto en tu login.html
+const response = await fetch('/api/validar', {
+    method: 'POST', // Esto es clave
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ cuit: user, clave: password })
+});
 
                 const data = await response.json();
 
