@@ -4,35 +4,29 @@
     <meta charset="UTF-8">
     <title>Login - Portal</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
-        .container { border: 1px solid #ccc; padding: 20px; border-radius: 8px; box-shadow: 2px 2px 10px #eee; }
-        input { display: block; margin-bottom: 15px; padding: 10px; width: 250px; }
-        button { width: 270px; padding: 10px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; }
-    </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>Iniciar Sesión</h2>
-        <input type="text" id="usuario" placeholder="CUIT del Cliente">
-        <input type="password" id="password" placeholder="Contraseña (Clave)">
-        <button id="btn-login" onclick="login()">Ingresar</button>
-    </div>
+    <h2>Iniciar Sesión</h2>
+    <input type="text" id="usuario" placeholder="CUIT del Cliente">
+    <input type="password" id="password" placeholder="Contraseña">
+    
+    <button id="btn-login">Ingresar</button>
 
     <script>
-        // Configuración de tu proyecto
+        // 1. Inicialización
         const supabaseUrl = 'https://kjvolmxopztielrlhzqg.supabase.co';
         const supabaseKey = 'sb_publishable_0i-ymg_0Ala-0ZQBFbwHhw_H49Mzhqz';
         const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
+        // 2. Función de Login
         async function login() {
             const btn = document.getElementById("btn-login");
             const usuario = document.getElementById("usuario").value;
             const password = document.getElementById("password").value;
 
             if (!usuario || !password) {
-                alert("Por favor, ingresa CUIT y contraseña.");
+                alert("Completa ambos campos");
                 return;
             }
 
@@ -40,7 +34,6 @@
             btn.innerText = "Verificando...";
 
             try {
-                // Consulta ajustada a tus columnas reales
                 const { data, error } = await supabase
                     .from('clientes')
                     .select('*')
@@ -51,18 +44,20 @@
 
                 if (data && data.length > 0) {
                     alert("¡Acceso autorizado!");
-                    // Redirección futura aquí
                 } else {
                     alert("CUIT o contraseña incorrectos.");
                 }
             } catch (err) {
                 console.error("Error:", err);
-                alert("Error de conexión: " + err.message);
+                alert("Error: " + err.message);
             } finally {
                 btn.disabled = false;
                 btn.innerText = "Ingresar";
             }
         }
+
+        // 3. ESTA ES LA CLAVE: Asignamos el evento aquí abajo
+        document.getElementById("btn-login").addEventListener("click", login);
     </script>
 </body>
 </html>
