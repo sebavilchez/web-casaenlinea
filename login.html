@@ -2,42 +2,38 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Acceso Portal</title>
+    <title>Acceso</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding-top: 50px; }
         input { margin: 5px; padding: 10px; width: 250px; }
         button { margin: 10px; padding: 10px 20px; cursor: pointer; }
-        #mensaje { margin-top: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <h2>Acceso al Portal</h2>
-    <input type="text" id="cuit" placeholder="CUIT (Ej: 30717950441)">
+    <h2>Login</h2>
+    <input type="text" id="cuit" placeholder="CUIT">
     <input type="password" id="clave" placeholder="Contraseña">
     <button id="btn-login">Ingresar</button>
-
     <p id="mensaje"></p>
 
     <script>
-        // Configuración oficial de tu proyecto
-        const URL = 'https://kjvolmxopztielrlhzqg.supabase.co';
-        const KEY = 'sb_publishable_JiDU8QzJFxgWJ1iH6S7QBA_rbikwSJG';
-        const supabase = supabase.createClient(URL, KEY);
+        // 2. Definimos la constante UNA SOLA VEZ
+        const supabaseUrl = 'https://kjvolmxopztielrlhzqg.supabase.co';
+        const supabaseKey = 'sb_publishable_JiDU8QzJFxgWJ1iH6S7QBA_rbikwSJG';
+        
+        // 3. Inicializamos el cliente
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-        const btn = document.getElementById('btn-login');
-        const msg = document.getElementById('mensaje');
-
-        btn.addEventListener('click', async () => {
+        document.getElementById('btn-login').addEventListener('click', async () => {
             const cuit = document.getElementById('cuit').value;
             const clave = document.getElementById('clave').value;
+            const msg = document.getElementById('mensaje');
 
-            msg.innerText = "Consultando base de datos...";
-            msg.style.color = "blue";
+            msg.innerText = "Conectando...";
 
             try {
-                // Consulta directa a tu tabla
                 const { data, error } = await supabase
                     .from('clientes')
                     .select('id')
@@ -47,14 +43,11 @@
                 if (error) throw error;
 
                 if (data && data.length > 0) {
-                    msg.style.color = "green";
-                    msg.innerText = "✅ ¡Acceso Autorizado! Bienvenido.";
+                    msg.innerText = "✅ ¡Acceso Autorizado!";
                 } else {
-                    msg.style.color = "red";
-                    msg.innerText = "❌ CUIT o clave incorrectos.";
+                    msg.innerText = "❌ Datos incorrectos.";
                 }
             } catch (err) {
-                msg.style.color = "red";
                 msg.innerText = "Error: " + err.message;
             }
         });
