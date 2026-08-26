@@ -99,6 +99,46 @@ Instalamos cámaras de seguridad, redes de datos, sistemas de control de acceso 
 </div>
 </div>
 </section>
+<section id="streaming-en-vivo" style="padding: 60px 5%; text-align: center; background-color: var(--bg-dark);">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h2 class="section-title">Transmisión en <span>Directo 24/7</span></h2>
+        <p class="section-subtitle">Monitoreo en tiempo real a través de infraestructura segura.</p>
+        
+        <!-- Contenedor del streaming en vivo sin controles -->
+        <div style="position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid rgba(112, 159, 157, 0.2);">
+            <video id="video-stream" autoplay muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none;"></video>
+        </div>
+    </div>
+</section>
+
+<!-- Script de HLS.js configurado para transmisiones en vivo (Live Stream) -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+    var video = document.getElementById('video-stream');
+    var videoSrc = 'https://vtmsaopaulo.ezvizlife.com:4443/v3/openlive/GL4596791_1_1.m3u8?expire=1803270933&id=1012701838290034688&c=97a7ad672e&t=18240c2a1358030e0d1e7bd9c6eff24db6af840afd73d889c3d4b8e131ee4ab4&ev=100&u=b4f136f745e3456c97cbc53d0e746d2e';
+
+    if (Hls.isSupported()) {
+        var hls = new Hls({
+            liveSyncDurationCount: 3, // Mantiene el streaming sincronizado con el borde del directo
+            lowLatencyMode: true
+        });
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+            video.play().catch(function(error) {
+                console.log("Reproducción automática bloqueada por el navegador:", error);
+            });
+        });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        // Soporte nativo para Safari / iOS
+        video.src = videoSrc;
+        video.addEventListener('loadedmetadata', function() {
+            video.play().catch(function(error) {
+                console.log("Reproducción automática bloqueada:", error);
+            });
+        });
+    }
+</script>  
 <section id="servicios">
 <div class="servicios-container">
 <h2 class="section-title">
