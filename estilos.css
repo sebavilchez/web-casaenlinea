@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. ESTILOS GENERALES Y BASE
+   ========================================================================== */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -16,7 +19,9 @@ body {
     overflow-y: auto; /* El scroll vertical ahora responde al contenido real de la página */
 }
 
-/* HEADER CON GLASSMORPHISM OPTIMIZADO */
+/* ==========================================================================
+   2. HEADER CON GLASSMORPHISM (OPTIMIZADO CON MENÚ ESTÁNDAR)
+   ========================================================================== */
 header {
     position: fixed;
     top: 0;
@@ -47,71 +52,29 @@ header {
     color: #3b82f6;
 }
 
-/* ESTILOS DEL CLIMA COMPLETO */
-.clima-container {
+/* AJUSTE ESTÁNDAR: Estilos integrados para la barra de navegación interna */
+.nav-menu {
     display: flex;
-    align-items: center;
-    gap: 14px;
-    background: rgba(255, 255, 255, 0.04);
-    padding: 6px 16px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    font-size: 0.8rem;
+    gap: 20px;
+}
+
+.nav-menu a {
     color: #cbd5e1;
-    transition: opacity 0.3s ease;
-    opacity: 0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
-.clima-principal {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+.nav-menu a:hover {
+    color: #3b82f6;
 }
 
-.clima-ciudad {
-    font-weight: 400;
-    opacity: 0.7;
-}
-
-.clima-temp {
-    font-weight: 600;
-    color: #60a5fa;
-    font-size: 0.85rem;
-}
-
-.clima-icono img {
-    width: 28px;
-    height: 28px;
-    display: block;
-}
-
-.clima-separador {
-    width: 1px;
-    height: 14px;
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.clima-detalles {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    opacity: 0.85;
-}
-
-.clima-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.clima-item i {
-    color: #94a3b8;
-    font-size: 0.75rem;
-}
-
-/* SECCIÓN HERO (ABOVE THE FOLD) */
+/* ==========================================================================
+   3. SECCIÓN HERO (ABOVE THE FOLD)
+   ========================================================================== */
 #hero {
-    min-height: 100vh; /* Cambiado a min-height para permitir que el flujo vertical continúe */
+    min-height: 100vh; /* Permite que el flujo vertical continúe */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,7 +83,7 @@ header {
     background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.85)), url('fondo.webp');
     background-size: cover;
     background-position: center center;
-    padding: 90px 20px 40px 20px; /* Padding superior para evitar superposición con el header fijo */
+    padding: 90px 20px 40px 20px; /* Evita la superposición con el header fijo */
 }
 
 .hero-container {
@@ -217,7 +180,9 @@ header {
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* SECCIÓN BELOW THE FOLD: CAPACIDADES CENTRALES */
+/* ==========================================================================
+   4. SECCIÓN SERVICIOS (BELOW THE FOLD)
+   ========================================================================== */
 #servicios {
     background-color: #0f172a;
     padding: 100px 5% 100px 5%;
@@ -313,7 +278,7 @@ header {
     flex-grow: 1;
 }
 
-/* ETIQUETAS TÉCNICAS (TAGS INDEPENDIENTES) */
+/* ETIQUETAS TÉCNICAS */
 .servicio-tags {
     display: flex;
     flex-wrap: wrap;
@@ -333,199 +298,257 @@ header {
 }
 
 /* ==========================
-   COMUNIDAD Y REDES SOCIALES
+   5. COMUNIDAD Y REDES SOCIALES
    ========================== */
-
-#comunidad-redes{
-    padding:100px 5%;
-    background:linear-gradient(
-        180deg,
-        #0f172a 0%,
-        #111827 100%
-    );
+#comunidad-redes {
+    padding: 100px 5%;
+    background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
 }
 
-.comunidad-container{
-    max-width:1200px;
-    margin:0 auto;
+.comunidad-container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.redes-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
+.redes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
 }
 
-.red-social{
-    position:relative;
-    overflow:hidden;
-
-    text-decoration:none;
-    color:inherit;
-
-    background:rgba(255,255,255,0.02);
-    border:1px solid rgba(255,255,255,0.05);
-
-    border-radius:12px;
-    padding:35px 30px;
-
-    text-align:center;
-
-    backdrop-filter:blur(4px);
-
-    transition:all .3s ease;
+.red-social {
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 35px 30px;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
 }
 
-.red-social::before{
-    content:'';
-    position:absolute;
-    top:0;
-    left:0;
-
-    width:100%;
-    height:3px;
-
-    background:linear-gradient(
-        90deg,
-        #3b82f6,
-        #60a5fa
-    );
-
-    transform:scaleX(0);
-    transition:.3s ease;
+.red-social::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    transform: scaleX(0);
+    transition: 0.3s ease;
 }
 
-.red-social:hover::before{
-    transform:scaleX(1);
+.red-social:hover::before {
+    transform: scaleX(1);
 }
 
-.red-social:hover{
-    transform:translateY(-5px);
-
-    background:rgba(255,255,255,0.04);
-
-    border-color:rgba(59,130,246,.30);
-
-    box-shadow:0 12px 35px rgba(0,0,0,.4);
+.red-social:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(59, 130, 246, 0.30);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
 }
 
-.red-icon{
-    width:64px;
-    height:64px;
-
-    margin:0 auto 20px;
-
-    border-radius:12px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:1.8rem;
-
-    transition:all .3s ease;
+.red-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
 }
 
-.red-social:hover .red-icon{
-    transform:scale(1.08);
+.red-social:hover .red-icon {
+    transform: scale(1.08);
 }
 
 /* LinkedIn */
-
-.red-social:nth-child(1) .red-icon{
-    background:rgba(0,119,181,.15);
-    border:1px solid rgba(0,119,181,.25);
-    color:#0077b5;
+.red-social:nth-child(1) .red-icon {
+    background: rgba(0, 119, 181, 0.15);
+    border: 1px solid rgba(0, 119, 181, 0.25);
+    color: #0077b5;
 }
 
 /* Instagram */
-
-.red-social:nth-child(2) .red-icon{
-    background:rgba(221,42,123,.15);
-    border:1px solid rgba(221,42,123,.25);
-    color:#dd2a7b;
+.red-social:nth-child(2) .red-icon {
+    background: rgba(221, 42, 123, 0.15);
+    border: 1px solid rgba(221, 42, 123, 0.25);
+    color: #dd2a7b;
 }
 
 /* YouTube */
-
-.red-social:nth-child(3) .red-icon{
-    background:rgba(255,0,0,.15);
-    border:1px solid rgba(255,0,0,.25);
-    color:#ff0000;
+.red-social:nth-child(3) .red-icon {
+    background: rgba(255, 0, 0, 0.15);
+    border: 1px solid rgba(255, 0, 0, 0.25);
+    color: #ff0000;
 }
 
 /* GitHub */
-
-.red-social:nth-child(4) .red-icon{
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.15);
-    color:#ffffff;
+.red-social:nth-child(4) .red-icon {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
 }
 
-.red-social h3{
-    color:#ffffff;
-    font-size:1.15rem;
-    font-weight:600;
-    margin-bottom:12px;
+.red-social h3 {
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 12px;
 }
 
-.red-social p{
-    color:#94a3b8;
-    font-size:.9rem;
-    line-height:1.6;
+.red-social p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
 
-.redes-cta{
-    text-align:center;
-    margin-top:50px;
+.redes-cta {
+    text-align: center;
+    margin-top: 50px;
 }
 
-/* RESPONSIVE */
+/* ==========================
+   6. ESTILOS DEL CLIMA (REUBICADO AL FOOTER)
+   ========================== */
+.clima-container {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.8rem;
+    color: #cbd5e1;
+    margin: 0 auto 25px auto; /* Centrado automático sobre el copyright */
+    width: max-content;       /* Ajuste limpio al ancho de sus componentes */
+    opacity: 1 !important;    /* AJUSTE ESTÁNDAR: Asegura visibilidad en su nueva ubicación */
+    transition: opacity 0.3s ease;
+}
+
+.clima-principal {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.clima-ciudad {
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.clima-temp {
+    font-weight: 600;
+    color: #60a5fa;
+    font-size: 0.85rem;
+}
+
+.clima-icono img {
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+
+.clima-separador {
+    width: 1px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.clima-detalles {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0.85;
+}
+
+.clima-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.clima-item i {
+    color: #94a3b8;
+    font-size: 0.75rem;
+}
+
+/* ==========================================================================
+   7. FOOTER
+   ========================================================================== */
+#footer {
+    padding: 40px 5% 25px 5%; /* Un poco más de padding superior por el bloque del clima */
+    background: #0b1120;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-container p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* ==========================================================================
+   8. RESPONSIVE MEDIA QUERIES (OPTIMIZADOS PARA EL MENÚ)
+   ========================================================================== */
 @media (max-width: 768px) {
+    /* Oculta los detalles extendidos del clima en tablets y móviles para que no se deforme el footer */
     .clima-detalles, .clima-separador {
         display: none;
     }
+    
+    /* AJUSTE ESTÁNDAR: Reduce el tamaño de los enlaces en móviles */
+    .nav-menu {
+        gap: 12px;
+    }
+    .nav-menu a {
+        font-size: 0.8rem;
+    }
+
     #hero {
         height: auto;
         min-height: 100vh;
         padding: 130px 20px 80px 20px;
     }
+
     #servicios {
         padding: 80px 20px;
     }
 }
 
 @media (max-width: 480px) {
+    /* AJUSTE ESTÁNDAR: Oculta el menú en pantallas extremadamente chicas para evitar roturas visuales */
+    .nav-menu {
+        display: none;
+    }
+
     .hero-cta-group {
         flex-direction: column;
         align-items: stretch;
         padding: 0 10px;
     }
+
     .cta-primary, .cta-secondary {
         justify-content: center;
     }
+
     .clima-ciudad {
         display: none;
     }
-}
-/* FOOTER */
-
-#footer{
-    padding:25px 5%;
-    background:#0b1120;
-    border-top:1px solid rgba(255,255,255,.08);
-    text-align:center;
-}
-
-.footer-container{
-    width:100%;
-    max-width:1200px;
-    margin:0 auto;
-}
-
-.footer-container p{
-    margin:0;
-    color:#64748b;
-    font-size:.9rem;
-    text-align:center;
 }
