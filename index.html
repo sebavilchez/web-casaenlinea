@@ -99,19 +99,18 @@ Instalamos cámaras de seguridad, redes de datos, sistemas de control de acceso 
 </div>
 </div>
 </section>
+
 <section id="streaming-en-vivo" style="padding: 60px 5%; text-align: center; background-color: var(--bg-dark);">
     <div style="max-width: 800px; margin: 0 auto;">
         <h2 class="section-title">Transmisión en <span>Directo 24/7</span></h2>
         <p class="section-subtitle">Monitoreo en tiempo real a través de infraestructura segura.</p>
         
-        <!-- Contenedor del streaming en vivo sin controles -->
+        <!-- Contenedor del streaming con controles y pantalla completa -->
         <div style="position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid rgba(112, 159, 157, 0.2);">
-            <video id="video-stream" autoplay muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none;"></video>
+            <video id="video-stream" autoplay muted controls playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"></video>
         </div>
     </div>
 </section>
-
-<video id="video-stream" controls playsinline style="width: 100%;"></video>
   
 <!-- Script de HLS.js configurado para transmisiones en vivo (Live Stream) -->
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -140,7 +139,7 @@ Instalamos cámaras de seguridad, redes de datos, sistemas de control de acceso 
             });
         });
     }
-</script>  
+</script>
 <section id="servicios">
 <div class="servicios-container">
 <h2 class="section-title">
