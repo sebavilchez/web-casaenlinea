@@ -378,7 +378,7 @@
 
 .clima-temp {
     font-weight: 600;
-    color: var(--highlight, #709f9d);
+    color: #4db6ac; /* Unificado con el color de marca general */
 }
 
 .clima-separador {
@@ -403,9 +403,9 @@
     font-size: 0.8rem;
 }
 
-/* Ajuste responsivo opcional para pantallas chicas */
-@media (max-width: 768px) {
+/* Ajuste responsivo para pantallas chicas / medianas */
+@media (max-width: 992px) {
     .clima-container {
-        display: none; /* Oculta el widget en pantallas móviles muy pequeñas si el header se satura */
+        display: none; /* Oculta el widget si el espacio se achica antes de llegar a mobile */
     }
 }
