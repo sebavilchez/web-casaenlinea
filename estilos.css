@@ -278,3 +278,76 @@
     border-radius: 4px;
     font-family: 'Poppins', sans-serif;
 }
+
+/* --- SECCIÓN COMUNIDAD Y REDES --- */
+#comunidad-redes {
+    padding: 90px 5%;
+    background-color: #0d1117;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.comunidad-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.redes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.red-social {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 30px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.red-social:hover {
+    transform: translateY(-4px);
+    border-color: rgba(77, 182, 172, 0.4);
+}
+
+.red-icon {
+    font-size: 2.2rem;
+    color: #4db6ac;
+    margin-bottom: 15px;
+}
+
+.red-social h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.red-social p {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.redes-cta {
+    margin-top: 20px;
+}
+
+/* --- FOOTER --- */
+#footer {
+    padding: 30px 5%;
+    background-color: #07090f;
+    text-align: center;
+    color: #64748b;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+}
