@@ -1,3 +1,13 @@
+/* --- RESET GLOBAL PARA EL FONDO OSCURO --- */
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #0b0f19;
+    color: #94a3b8;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
 /* --- HEADER MODERNO (GLASSMORPHISM) --- */
 .site-header {
     display: flex;
@@ -350,62 +360,4 @@
     color: #64748b;
     font-size: 0.9rem;
     font-family: 'Poppins', sans-serif;
-}
-
-/* Estilos para el Widget de Clima en el Header */
-.clima-container {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    color: #fff;
-    gap: 10px;
-}
-
-.clima-principal {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.clima-ciudad {
-    font-weight: 500;
-    opacity: 0.9;
-}
-
-.clima-temp {
-    font-weight: 600;
-    color: #4db6ac; /* Unificado con el color de marca general */
-}
-
-.clima-separador {
-    width: 1px;
-    height: 16px;
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.clima-detalles {
-    display: flex;
-    gap: 12px;
-}
-
-.clima-item {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    opacity: 0.8;
-}
-
-.clima-item i {
-    font-size: 0.8rem;
-}
-
-/* Ajuste responsivo para pantallas chicas / medianas */
-@media (max-width: 992px) {
-    .clima-container {
-        display: none; /* Oculta el widget si el espacio se achica antes de llegar a mobile */
-    }
 }
