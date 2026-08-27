@@ -3,148 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cámara de Seguridad en Vivo | Casa en Línea</title>
-
-    <!-- Favicon de Cámara en Vivo -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📹</text></svg>">
-
-    <!-- 1. Estilos CSS de Plyr -->
+    <title>Stream</title>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.8.4/plyr.css" />
-    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-        }
-
-        /* --- Estilos del Splash Screen y Spinner --- */
-        #splash-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #0b0f19;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 20;
-            border-radius: 8px;
-            transition: opacity 0.5s ease;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid #4db6ac;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 15px;
-        }
-
-        .splash-text {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            font-family: Arial, sans-serif;
-            letter-spacing: 0.5px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
+        body { background: #000; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .player-container { width: 100%; max-width: 100%; }
     </style>
 </head>
 <body>
 
-    <div class="video-container">
-        <!-- Pantalla de carga / Splash Screen -->
-        <div id="splash-screen">
-            <div class="spinner"></div>
-            <div class="splash-text">Conectando con cámara en vivo...</div>
-        </div>
-
-        <!-- Etiqueta de video con atributos nativos compatibles con Plyr -->
-        <video id="video-stream" controls crossorigin playsinline autoplay muted></video>
+    <div class="player-container">
+        <video id="player" playsinline controls></video>
     </div>
 
-    <!-- 2. Librería Hls.js y Plyr JS -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://cdn.plyr.io/3.8.4/plyr.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const video = document.getElementById('video-stream');
-            const splashScreen = document.getElementById('splash-screen');
-            const videoSrc = 'https://vtmsaopaulo.ezvizlife.com:4443/v3/openlive/GL4596791_1_1.m3u8?expire=1803270933&id=1012701838290034688&c=97a7ad672e&t=18240c2a1358030e0d1e7bd9c6eff24db6af840afd73d889c3d4b8e131ee4ab4&ev=100&u=b4f136f745e3456c97cbc53d0e746d2e';
+            const video = document.querySelector('#player');
+            const hlsUrl = 'https://vtmsaopaulo.ezvizlife.com:4443/v3/openlive/GL4596791_1_1.m3u8?expire=1803360204&id=1013076267803619328&c=97a7ad672e&t=82fa89131a22fe6cd55cc159b49bce8696256c31d67cac03ca6dcd2ec53926f3&ev=100&u=926bb1a5e8e447229f5a780716111c13';
 
-            // Función para ocultar el splash screen de forma suave
-            const hideSplash = () => {
-                if (splashScreen && !splashScreen.classList.contains('hidden')) {
-                    splashScreen.classList.add('hidden');
-                    setTimeout(() => splashScreen.remove(), 500);
-                }
+            const plyrOptions = {
+                quality: {
+                    default: 720,
+                    options: [1080, 720, 480, 360],
+                    forced: true,
+                    onChange: (newQuality) => {
+                        if (window.hls) {
+                            window.hls.levels.forEach((level, index) => {
+                                if (level.height === newQuality) {
+                                    window.hls.currentLevel = index;
+                                }
+                            });
+                        }
+                    }
+                },
+                controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen'],
+                settings: ['quality', 'speed'],
             };
 
-            // 1. Inicializar Plyr PRIMERO
-            const player = new Plyr(video, {
-                controls: ['play-large', 'play', 'mute', 'volume', 'fullscreen'],
-                resetOnEnd: false,
-                autoplay: true,
-                muted: true
-            });
-
-            // 2. Configurar Hls.js
             if (Hls.isSupported()) {
                 const hls = new Hls({
+                    maxBufferLength: 10,
+                    maxMaxBufferLength: 30,
                     liveSyncDurationCount: 3,
-                    lowLatencyMode: true
-                });
-                hls.loadSource(videoSrc);
-                hls.attachMedia(video);
-                
-                hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                    video.play().then(() => {
-                        hideSplash();
-                    }).catch(error => {
-                        console.log("Reproducción automática bloqueada:", error);
-                        hideSplash();
-                    });
                 });
 
-                video.addEventListener('playing', hideSplash);
+                window.hls = hls;
+                hls.loadSource(hlsUrl);
+                hls.attachMedia(video);
+
+                hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
+                    const availableQualities = hls.levels.map((l) => l.height);
+                    if (availableQualities.length > 0) {
+                        plyrOptions.quality.options = availableQualities;
+                        plyrOptions.quality.default = availableQualities[availableQualities.length - 1];
+                    }
+
+                    const player = new Plyr(video, plyrOptions);
+                    window.player = player;
+                });
+
+                hls.on(Hls.Events.ERROR, (event, data) => {
+                    if (data.fatal) {
+                        switch (data.type) {
+                            case Hls.ErrorTypes.NETWORK_ERROR:
+                                hls.startLoad();
+                                break;
+                            case Hls.ErrorTypes.MEDIA_ERROR:
+                                hls.recoverMediaError();
+                                break;
+                            default:
+                                hls.destroy();
+                                break;
+                        }
+                    }
+                });
 
             } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                video.src = videoSrc;
-                video.addEventListener('loadedmetadata', () => {
-                    video.play().then(() => {
-                        hideSplash();
-                    }).catch(error => {
-                        console.log("Reproducción automática bloqueada:", error);
-                        hideSplash();
-                    });
-                });
+                video.src = hlsUrl;
+                const player = new Plyr(video, plyrOptions);
             }
         });
     </script>
-
 </body>
 </html>
