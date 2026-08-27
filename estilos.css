@@ -181,3 +181,100 @@
         justify-content: center;
     }
 }
+
+/* --- SECCIÓN SERVICIOS --- */
+#servicios {
+    padding: 90px 5%;
+    background-color: #0b0f19;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.servicios-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.section-title span {
+    color: #4db6ac;
+}
+
+.section-subtitle {
+    font-size: 1.05rem;
+    color: #94a3b8;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Grilla de Servicios */
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.servicio-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 30px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.servicio-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(77, 182, 172, 0.4);
+}
+
+.servicio-icon {
+    font-size: 2rem;
+    color: #4db6ac;
+    margin-bottom: 20px;
+}
+
+.servicio-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 12px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.servicio-card p {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Etiquetas tecnológicas dentro de cada tarjeta */
+.servicio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.servicio-tags span {
+    background-color: rgba(77, 182, 172, 0.1);
+    color: #4db6ac;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+}
