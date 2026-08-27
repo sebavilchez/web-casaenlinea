@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cámara de Seguridad en Vivo</title>
+    <title>Cámara de Seguridad en Vivo | Casa en Línea</title>
+
+    <!-- Favicon de Cámara en Vivo -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📹</text></svg>">
 
     <!-- 1. Estilos CSS de Plyr -->
     <link rel="stylesheet" href="https://cdn.plyr.io/3.8.4/plyr.css" />
@@ -97,7 +100,6 @@
             const hideSplash = () => {
                 if (splashScreen && !splashScreen.classList.contains('hidden')) {
                     splashScreen.classList.add('hidden');
-                    // Opcional: removerlo del DOM por completo tras la transición
                     setTimeout(() => splashScreen.remove(), 500);
                 }
             };
@@ -124,15 +126,13 @@
                         hideSplash();
                     }).catch(error => {
                         console.log("Reproducción automática bloqueada:", error);
-                        hideSplash(); // Ocultamos igual para que el usuario pueda darle play manual
+                        hideSplash();
                     });
                 });
 
-                // Evento alternativo por si el stream arranca antes
                 video.addEventListener('playing', hideSplash);
 
             } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                // Soporte nativo para Safari / iOS
                 video.src = videoSrc;
                 video.addEventListener('loadedmetadata', () => {
                     video.play().then(() => {
