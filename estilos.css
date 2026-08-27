@@ -69,3 +69,115 @@
         display: none;
     }
 }
+
+/* --- SECCIÓN HERO --- */
+#hero {
+    position: relative;
+    padding: 80px 5% 90px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: linear-gradient(rgba(11, 15, 25, 0.85), rgba(11, 15, 25, 0.92)), url('fondo.webp');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#hero h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.25;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+#hero h1 .brand {
+    display: block;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #4db6ac;
+    margin-bottom: 10px;
+}
+
+#hero h1 .highlight {
+    color: #4db6ac;
+}
+
+#hero p {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Grupo de botones de acción (CTA) */
+.hero-cta-group {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #25d366;
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.cta-primary:hover {
+    opacity: 0.95;
+    transform: translateY(-2px);
+}
+
+.cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.cta-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Ajustes responsivos para celulares */
+@media (max-width: 600px) {
+    #hero {
+        padding: 60px 5%;
+    }
+    .hero-cta-group {
+        flex-direction: column;
+    }
+    .cta-primary, .cta-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+}
