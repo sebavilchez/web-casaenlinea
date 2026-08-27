@@ -66,7 +66,12 @@
             CASA <span>EN LÍNEA</span>
         </a>
 
-        <nav class="header-nav">
+        <!-- Botón Hamburguesa para Celulares -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="header-nav" id="header-nav">
             <a href="#servicios">Servicios</a>
             <a href="#comunidad-redes">Comunidad</a>
             <a href="en-vivo.html" target="_blank" rel="noopener noreferrer">En vivo</a>
@@ -229,6 +234,32 @@
     <!-- Scripts -->
     <script>
         document.getElementById("anio-actual").textContent = new Date().getFullYear();
+
+        // Lógica del Menú Hamburguesa
+        const menuToggle = document.getElementById('menu-toggle');
+        const headerNav = document.getElementById('header-nav');
+
+        menuToggle.addEventListener('click', () => {
+            headerNav.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (headerNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Cerrar menú al hacer click en cualquier opción de la navegación
+        headerNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                headerNav.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
     </script>
 </body>
 </html>
