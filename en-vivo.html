@@ -29,7 +29,8 @@
 <body>
 
     <div class="player-container">
-        <video id="player" playsinline controls></video>
+        <!-- Añadido autoplay y muted (necesario para que los navegadores modernos permitan autoplay) -->
+        <video id="player" playsinline autoplay muted controls></video>
     </div>
 
     <script src="https://cdn.plyr.io/3.8.4/plyr.js"></script>
@@ -41,6 +42,8 @@
             const hlsUrl = 'https://vtmsaopaulo.ezvizlife.com:4443/v3/openlive/GL4596791_1_1.m3u8?expire=1803360204&id=1013076267803619328&c=97a7ad672e&t=82fa89131a22fe6cd55cc159b49bce8696256c31d67cac03ca6dcd2ec53926f3&ev=100&u=926bb1a5e8e447229f5a780716111c13';
 
             const plyrOptions = {
+                autoplay: true,
+                muted: true,
                 quality: {
                     default: 720,
                     options: [1080, 720, 480, 360],
@@ -55,7 +58,8 @@
                         }
                     }
                 },
-                controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen'],
+                // Se removió 'progress' y 'current-time' del array de controles
+                controls: ['play-large', 'play', 'mute', 'volume', 'settings', 'fullscreen'],
                 settings: ['quality', 'speed'],
             };
 
