@@ -20,7 +20,8 @@
             height: 540px; 
             max-width: 100%;
         }
-        .player-container video {
+        .player-container video,
+        .plyr {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -30,7 +31,6 @@
 <body>
 
     <div class="player-container">
-        <!-- Añadido autoplay y muted (necesario para que los navegadores modernos permitan autoplay) -->
         <video id="player" playsinline autoplay muted controls></video>
     </div>
 
@@ -59,9 +59,8 @@
                         }
                     }
                 },
-                // Se removió 'progress' y 'current-time' del array de controles
-                controls: ['play-large', 'play', 'mute', 'volume', 'settings', 'fullscreen'],
-                settings: ['quality', 'speed'],
+                // Controles limpios sin 'settings' ni menú de configuración
+                controls: ['play-large', 'play', 'mute', 'volume', 'fullscreen'],
             };
 
             if (Hls.isSupported()) {
