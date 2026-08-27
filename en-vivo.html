@@ -20,14 +20,65 @@
             margin: 0;
         }
         .video-container {
+            position: relative;
             width: 100%;
             max-width: 900px;
+        }
+
+        /* --- Estilos del Splash Screen y Spinner --- */
+        #splash-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0b0f19;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+            border-radius: 8px;
+            transition: opacity 0.5s ease;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #4db6ac;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        .splash-text {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            font-family: Arial, sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
     <div class="video-container">
+        <!-- Pantalla de carga / Splash Screen -->
+        <div id="splash-screen">
+            <div class="spinner"></div>
+            <div class="splash-text">Conectando con cámara en vivo...</div>
+        </div>
+
         <!-- Etiqueta de video con atributos nativos compatibles con Plyr -->
         <video id="video-stream" controls crossorigin playsinline autoplay muted></video>
     </div>
@@ -39,9 +90,19 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const video = document.getElementById('video-stream');
+            const splashScreen = document.getElementById('splash-screen');
             const videoSrc = 'https://vtmsaopaulo.ezvizlife.com:4443/v3/openlive/GL4596791_1_1.m3u8?expire=1803270933&id=1012701838290034688&c=97a7ad672e&t=18240c2a1358030e0d1e7bd9c6eff24db6af840afd73d889c3d4b8e131ee4ab4&ev=100&u=b4f136f745e3456c97cbc53d0e746d2e';
 
-            // 1. Inicializar Plyr PRIMERO para que tome el control del DOM y la interfaz
+            // Función para ocultar el splash screen de forma suave
+            const hideSplash = () => {
+                if (splashScreen && !splashScreen.classList.contains('hidden')) {
+                    splashScreen.classList.add('hidden');
+                    // Opcional: removerlo del DOM por completo tras la transición
+                    setTimeout(() => splashScreen.remove(), 500);
+                }
+            };
+
+            // 1. Inicializar Plyr PRIMERO
             const player = new Plyr(video, {
                 controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
                 resetOnEnd: false,
@@ -49,7 +110,7 @@
                 muted: true
             });
 
-            // 2. Configurar e integrar Hls.js sobre el reproductor ya inicializado
+            // 2. Configurar Hls.js
             if (Hls.isSupported()) {
                 const hls = new Hls({
                     liveSyncDurationCount: 3,
@@ -59,16 +120,26 @@
                 hls.attachMedia(video);
                 
                 hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                    video.play().catch(error => {
-                        console.log("Reproducción automática bloqueada por el navegador:", error);
+                    video.play().then(() => {
+                        hideSplash();
+                    }).catch(error => {
+                        console.log("Reproducción automática bloqueada:", error);
+                        hideSplash(); // Ocultamos igual para que el usuario pueda darle play manual
                     });
                 });
+
+                // Evento alternativo por si el stream arranca antes
+                video.addEventListener('playing', hideSplash);
+
             } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
                 // Soporte nativo para Safari / iOS
                 video.src = videoSrc;
                 video.addEventListener('loadedmetadata', () => {
-                    video.play().catch(error => {
+                    video.play().then(() => {
+                        hideSplash();
+                    }).catch(error => {
                         console.log("Reproducción automática bloqueada:", error);
+                        hideSplash();
                     });
                 });
             }
